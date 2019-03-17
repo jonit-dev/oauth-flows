@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Authorization Code Flow</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script src="js/classes/OAuth.js"></script>
+
+    <script src="js/App.js"></script>
+
+</head>
+<body>
+
+<h1>Authorization Code Grant Flow</h1>
+
+<p>It will only work if you're running on a server. <strong>It doesn't work on localhost</strong></p>
+
+<input type="button" value="Login with Google" id="btnGoogleAuthCodeGrant">
+
+<h1>Implicit Flow</h1>
+
+<input type="button" id="btnGoogleImplicitFlow" value="Authenticate with Gmail">
+<input type="button" id="btnFacebookImplicitFlow" value="Authenticate with Facebook">
+
+
+</body>
+</html>

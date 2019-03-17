@@ -1,0 +1,82 @@
+<html>
+<head>
+    <style>
+    </style>
+</head>
+<body>
+
+<script>
+    // if page doesn't include auth code, we need to authroize
+    if (!document.location.href.includes('code')) {
+        // this will redirect the page to facebook, then back
+        let client_id = '126677101119-mg0gvhmrq08jt6f8fficvrcj6efkn81v.apps.googleusercontent.com';
+        let client_secret = 'oWxiwnvpPJ5CjYApxG9QCUvH';
+        var login_url = [`https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}`,
+            `redirect_uri=https://joao.operatoroverload.com/oauth/google`,
+            `response_type=code`,
+            `scope=openid profile email `].join('&');
+//	console.log('Login URL PLace');
+        var login_button = document.createElement('button');
+        login_button.innerHTML = 'Login to google';
+        login_button.addEventListener('click', evt => {
+            document.location.href = login_url;
+        });
+
+        document.body.append(login_button);
+    } else {
+
+        // we have a token
+        console.log('got a code!!');
+        //            console.log(login_url);
+        // Retrieve access token with custom api
+        var params = new URLSearchParams(location.search);
+        var code = params.get('code');
+//console.log(params);
+        console.log(code);
+        fetch(`https://joao.operatoroverload.com/cgi-bin/code.sh?${code}`)
+            .then(respond => {
+                if (respond.status == 200) {
+                    return respond.json();
+                } else {
+                    throw "Cannot get token";
+                }
+            })
+            .then(json => {
+                console.log(json);
+                if (json.access_token) {
+                    // now we can get the userinfo
+                    getUserInfo(json.access_token);
+                } else {
+                    // we probably have an error
+                }
+            });
+    }
+
+    function getUserInfo(token) {
+        var fields = 'name,photos,friends{name,photos,relationship_status}'
+        // we can make a call to find out the user's identity
+        fetch('https://www.googleapis.com/oauth2/v1/userinfo?alt=json', {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(function (response) {
+            console.log(response);
+            if (response.status != 200) {
+                document.location.href = app_url;
+                token = null;
+            }
+            return response.json();
+        }).then(function (myJson) {
+            console.log(myJson);
+
+            let userinfo = document.createElement('div');
+
+            //userinfo.innerText = JSON.stringify(myJson);
+            userinfo.innerHTML = `<h1>Hello ${myJson.name}</h1><img src=${myJson.picture}>`;
+            document.body.append(userinfo);
+        });
+    }
+
+</script>
+</body>
+</html>
