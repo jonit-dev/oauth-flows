@@ -3,17 +3,17 @@ class OAuth {
     static init() {
 
         //Own server variables
-        this.OWN_SERVER_AUTH_SCRIPT = 'https://joao.operatoroverload.com/cgi-bin/code.sh';
+        this.OWN_SERVER_AUTH_SCRIPT = 'XXXX';
 
         //Google credentials
-        this.OAUTH_GOOGLE_CLIENT_ID = '126677101119-mg0gvhmrq08jt6f8fficvrcj6efkn81v.apps.googleusercontent.com'; //has to be the same as our auth script above
+        this.OAUTH_GOOGLE_CLIENT_ID = 'XXXX'; //has to be the same as our auth script above
 
-        this.OAUTH_IMPLICIT_GOOGLE_REDIRECT_URI = 'https://joao.operatoroverload.com/oauth/midterm/all-flows/';
-        this.OAUTH_AUTH_CODE_GOOGLE_REDIRECT_URI = `https://joao.operatoroverload.com/oauth/midterm/all-flows/`;
+        this.OAUTH_IMPLICIT_GOOGLE_REDIRECT_URI = 'XXXX';
+        this.OAUTH_AUTH_CODE_GOOGLE_REDIRECT_URI = `XXXX`;
 
         //Facebook credentials
-        this.OAUTH_FACEBOOK_CLIENT_ID = '2309735382603121';
-        this.OAUTH_IMPLICIT_FACEBOOK_REDIRECT_URI = 'https://joao.operatoroverload.com/oauth/midterm/all-flows/';
+        this.OAUTH_FACEBOOK_CLIENT_ID = 'XXXX';
+        this.OAUTH_IMPLICIT_FACEBOOK_REDIRECT_URI = 'XXXX';
         this.OAUTH_AUTH_CODE_FACEBOOK_REDIRECT_URI = ``; //didnt have time to do this one
 
 
